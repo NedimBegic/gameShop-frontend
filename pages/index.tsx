@@ -1,10 +1,8 @@
-import Header from "@/mainComponents/Header";
-import Footer from "@/mainComponents/Footer";
+import Layout from "@/app/Layout";
 export default function News() {
   return (
-    <main>
+    <Layout>
       <h1>Hi</h1>
-      <Footer />
-    </main>
+    </Layout>
   );
 }
