@@ -1,5 +1,5 @@
-// components/Layout.tsx
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "@/mainComponents/Header";
 
 type LayoutProps = {
@@ -7,6 +7,11 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  useEffect(() => {
+    // Import Bootstrap JavaScript only on the client-side
+    import("bootstrap");
+  }, []);
+
   return (
     <div>
       <Header />

@@ -1,0 +1,8 @@
+.nav {
+  background-color: #000000 !important;
+}
+.myNav {
+  justify-content: space-evenly;
+  width: 40%;
+  font-weight: bold;
+}
