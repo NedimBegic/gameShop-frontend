@@ -1,12 +1,13 @@
 import React from "react";
 import style from "./Header.module.css";
+import Button from "react-bootstrap/Button";
 
-const Header: React.FC = () => {
+const Header: React.FC = (props) => {
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark ${style.nav}`}>
       <div className="container">
         <a className="navbar-brand" href="#home">
-          GameShop
+          <img className={style.logo} src="/gameShop.png" alt="Game Shop" />
         </a>
         <button
           className="navbar-toggler"
@@ -42,6 +43,9 @@ const Header: React.FC = () => {
               </a>
             </li>
           </ul>
+          <Button className={style.register} variant="warning">
+            Register
+          </Button>{" "}
         </div>
       </div>
     </nav>

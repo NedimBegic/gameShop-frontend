@@ -2,7 +2,31 @@
   background-color: #000000 !important;
 }
 .myNav {
-  justify-content: space-evenly;
-  width: 40%;
+  justify-content: flex-start;
+  gap: 2em;
+  font-weight: bold;
+  width: 100%;
+  padding-left: 2em;
+}
+
+.logo {
+  width: 10em;
+}
+
+.myNav a,
+.myNav li {
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.myNav a:hover {
+  color: #000000;
+}
+.myNav li:hover {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.register {
   font-weight: bold;
 }
