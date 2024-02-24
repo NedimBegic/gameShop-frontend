@@ -1,0 +1,30 @@
+.gameCard {
+  max-width: 300px;
+  margin: 20px;
+}
+
+.cardImage {
+  height: 200px;
+  object-fit: cover;
+}
+
+.cardBody {
+  padding: 10px;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.cardText {
+  font-size: 1rem;
+}
+
+.cardInfo {
+  margin-bottom: 5px;
+}
+
+.visitButton {
+  margin-top: 10px;
+}
