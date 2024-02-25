@@ -8,7 +8,7 @@ const GameSlider: React.FC = () => {
   useEffect(() => {
     const fetchGames = async () => {
       const url =
-        "https://free-to-play-games-database.p.rapidapi.com/api/filter?tag=3d.mmorpg.fantasy.pvp&platform=pc";
+        "https://free-to-play-games-database.p.rapidapi.com/api/games";
       const options = {
         method: "GET",
         headers: {
@@ -43,48 +43,52 @@ const GameSlider: React.FC = () => {
     fetchGames();
   }, []);
 
+  interface GameData {
+    title: string;
+    thumbnail: string;
+    short_description: string;
+    gameUrl: string;
+    genre: string;
+    platform: string;
+    publisher: string;
+    developer: string;
+    release_date: string;
+    freetogame_profile_url: string;
+  }
+
+  const gameData: GameData = {
+    title: "Overwatch 2",
+    thumbnail: "https://www.freetogame.com/g/540/thumbnail.jpg",
+    short_description:
+      "A hero-focused first-person team shooter from Blizzard Entertainment.",
+    gameUrl: "https://www.freetogame.com/open/overwatch-2",
+    genre: "Shooter",
+    platform: "PC (Windows)",
+    publisher: "Activision Blizzard",
+    developer: "Blizzard Entertainment",
+    release_date: "2022-10-04",
+    freetogame_profile_url: "https://www.freetogame.com/overwatch-2",
+  };
+
+  const gameDataArr: GameData[] = Array(10).fill(gameData);
+
   return (
-    <div
-      id="gameSlider"
-      className={`carousel slide ${style.gameSlider}`}
-      data-ride="carousel"
-    >
-      <div className={`carousel-inner ${style.carouselInner}`}>
-        {games.map((game, index) => (
-          <div
-            key={index}
-            className={`carousel-item ${index === 0 ? "active" : ""} ${
-              style.carouselItem
-            }`}
-          >
-            <GameCard {...game} />
+    <div className={`row ${style.gameSlider}`}>
+      <div
+        id="gameSlider"
+        className={`carousel slide ${style.carousel}`}
+        data-ride="carousel"
+      >
+        <div className={`carousel-inner ${style.carouselInner}`}>
+          <div className="row flex-nowrap overflow-auto">
+            {gameDataArr.map((game, index) => (
+              <div key={index} className={`col-xl-3 ${style.carouselItem}`}>
+                <GameCard {...game} />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-      <a
-        className={`carousel-control-prev ${style.carouselControlPrev}`}
-        href="#gameSlider"
-        role="button"
-        data-slide="prev"
-      >
-        <span
-          className={`carousel-control-prev-icon ${style.carouselControlIcon}`}
-          aria-hidden="true"
-        ></span>
-        <span className="sr-only">Previous</span>
-      </a>
-      <a
-        className={`carousel-control-next ${style.carouselControlNext}`}
-        href="#gameSlider"
-        role="button"
-        data-slide="next"
-      >
-        <span
-          className={`carousel-control-next-icon ${style.carouselControlIcon}`}
-          aria-hidden="true"
-        ></span>
-        <span className="sr-only">Next</span>
-      </a>
     </div>
   );
 };
