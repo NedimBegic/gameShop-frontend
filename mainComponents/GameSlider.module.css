@@ -4,13 +4,12 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  border: 1px solid green;
 }
 
 .carouselItem {
-  border: 1px solid red;
   margin: 0;
   display: flex;
+  width: auto;
   justify-content: center;
   padding: 0;
 }

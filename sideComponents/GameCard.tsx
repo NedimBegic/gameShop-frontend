@@ -1,26 +1,19 @@
 import React from "react";
 import styles from "./GameCard.module.css";
+import { GamesInfo } from "@/utils/types";
 
-export interface GameCardProps {
-  title: string;
-  thumbnail: string;
-  shortDescription: string;
-  gameUrl: string;
-  genre: string;
-  platform: string;
-  publisher: string;
-  releaseDate: string;
-}
-
-const GameCard: React.FC<GameCardProps> = ({
+const GameCard: React.FC<GamesInfo> = ({
+  id,
   title,
   thumbnail,
-  shortDescription,
-  gameUrl,
+  short_description,
+  game_url,
   genre,
   platform,
   publisher,
-  releaseDate,
+  developer,
+  release_date,
+  freetogame_profile_url,
 }) => {
   return (
     <div className={`card ${styles.gameCard}`}>
@@ -31,7 +24,7 @@ const GameCard: React.FC<GameCardProps> = ({
       />
       <div className={`card-body ${styles.cardBody}`}>
         <h5 className={`card-title ${styles.cardTitle}`}>{title}</h5>
-        <p className={`card-text ${styles.cardText}`}>{shortDescription}</p>
+        <p className={`card-text ${styles.cardText}`}>{short_description}</p>
         <p className={`card-info ${styles.cardInfo}`}>
           <strong>Genre:</strong> {genre}
         </p>
@@ -43,10 +36,10 @@ const GameCard: React.FC<GameCardProps> = ({
         </p>
         <p className={`card-info ${styles.cardInfo}`}>
           <strong>Release Date:</strong>{" "}
-          {new Date(releaseDate).toLocaleDateString()}
+          {new Date(release_date).toLocaleDateString()}
         </p>
         <a
-          href={gameUrl}
+          href={game_url}
           className={`btn btn-primary ${styles.visitButton}`}
           target="_blank"
           rel="noopener noreferrer"

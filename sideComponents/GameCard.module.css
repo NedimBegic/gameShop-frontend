@@ -1,6 +1,17 @@
 .gameCard {
-  max-width: 300px;
-  margin: 20px;
+  max-width: 350px;
+  margin: 10px;
+  padding: 20px;
+  padding-bottom: 0em;
+  background-color: #f7f7f7;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.gameCard:hover {
+  background-color: #eaeaea;
+  transform: scale(1.02);
 }
 
 .cardImage {
@@ -13,18 +24,50 @@
 }
 
 .cardTitle {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: bold;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.cardTitle::-webkit-scrollbar {
+  display: none;
 }
 
 .cardText {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  height: 4em;
+  overflow-y: scroll;
+  border-bottom: 2px solid #d3d3d3;
+  border-bottom-right-radius: 20px;
+}
+
+.gameCard:hover .cardText {
+  border-bottom-color: #ffbd3f;
+}
+
+.cardText::-webkit-scrollbar {
+  display: none;
 }
 
 .cardInfo {
   margin-bottom: 5px;
+  white-space: nowrap;
+  overflow-x: hidden;
 }
 
 .visitButton {
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.visitButton:hover {
+  background-color: #0056b3;
 }

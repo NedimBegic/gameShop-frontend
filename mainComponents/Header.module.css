@@ -30,3 +30,12 @@
 .register {
   font-weight: bold;
 }
+
+@media screen and (max-width: 991px) {
+  .myNav {
+    gap: 0;
+  }
+  .register {
+    margin-left: 2em;
+  }
+}
