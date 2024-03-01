@@ -1,0 +1,42 @@
+.trailersContainer {
+  overflow-y: auto;
+  height: 400px;
+}
+
+.videoContainer {
+  position: relative;
+  height: 60%;
+  overflow: hidden;
+}
+
+.videoContainer iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.videoContainer h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin: 0;
+  color: #fff;
+}
+
+.otherGamesContainer {
+  overflow-y: auto;
+  height: 400px; /* Adjust height as needed */
+}
+
+.gameItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.gameItem img {
+  width: 14em;
+  height: 7em;
+  border-radius: 10px; /* Rounded corners */
+}
