@@ -1,12 +1,23 @@
+.container-fluid {
+  padding: 0;
+}
+
+.main {
+  width: 88%;
+}
+
+/* Left side (video container) */
 .trailersContainer {
   overflow-y: auto;
-  height: 400px;
+  height: 60vh;
+  width: 60%;
 }
 
 .videoContainer {
   position: relative;
-  height: 60%;
+  height: 100%;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .videoContainer iframe {
@@ -25,18 +36,70 @@
   color: #fff;
 }
 
+/* Right side (list of other games) */
 .otherGamesContainer {
   overflow-y: auto;
-  height: 400px; /* Adjust height as needed */
+  height: 60vh; /* Adjust height as needed */
+  width: 40%;
+  scrollbar-width: thin; /* Set the width of the scrollbar */
+}
+
+/* Webkit-specific scrollbar styles */
+.otherGamesContainer::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  border-radius: 20px;
+}
+
+/* Customize scrollbar track */
+.otherGamesContainer::-webkit-scrollbar-track {
+  background-color: #000;
+  border-radius: 20px;
+}
+
+/* Customize scrollbar thumb */
+.otherGamesContainer::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 4px; /* Set the radius of the scrollbar thumb */
+  border-radius: 20px;
 }
 
 .gameItem {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  padding: 10px;
+}
+
+.gameItem:hover {
+  cursor: pointer;
 }
 
 .gameItem img {
-  width: 14em;
-  height: 7em;
-  border-radius: 10px; /* Rounded corners */
+  width: 15em;
+  max-width: 10em !important;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.selected {
+  filter: grayscale(70%);
+}
+
+.gameImage {
+  height: 7em !important;
+}
+
+/* Bootstrap responsive classes */
+@media (max-width: 767px) {
+  .trailersContainer,
+  .otherGamesContainer {
+    height: 50vh;
+    width: 100%;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
 }

@@ -1,7 +1,7 @@
 import Layout from "@/app/Layout";
+import style from "./index.module.css";
 import GameSlider from "@/mainComponents/GameSlider";
 import Trailers from "@/mainComponents/Trilers";
-import style from "./index.module.css";
 import { gameTrilers, GameTrilers } from "@/utils/gameTrilers";
 
 export default function News() {
