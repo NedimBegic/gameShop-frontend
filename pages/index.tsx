@@ -11,6 +11,9 @@ export default function News() {
         <h2>Notable games</h2>
       </div>
       <GameSlider />
+      <div className={style.articleTitle}>
+        <h2>Best latest games</h2>
+      </div>
       <Trailers gameTrailers={gameTrilers} />
     </Layout>
   );
