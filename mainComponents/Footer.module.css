@@ -1,6 +1,5 @@
-/* Footer.module.css */
 .footer {
-  background-color: #333;
+  background-color: #000000;
   color: #fff;
   padding: 20px;
 }
@@ -12,18 +11,22 @@
 }
 
 .logo {
-  width: 100px;
+  width: 15em;
   height: auto;
+  margin-bottom: 1em;
 }
 
 .flexContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .div {
-  flex-basis: 30%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -34,19 +37,40 @@
 .div ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .div ul li {
   margin-bottom: 5px;
+  padding-top: 1em;
+  transition: color 0.3s ease;
+}
+
+.div li:hover {
+  cursor: pointer;
+  color: #ffc107;
 }
 
 .socialIcons {
   display: flex;
+  font-size: 3rem;
+  gap: 1em;
+  margin-top: 1em;
 }
 
 .socialIcons i {
-  font-size: 1.5rem;
   margin-right: 10px;
+}
+
+.socialIcons * {
+  transition: color 0.3s ease;
+}
+
+.socialIcons *:hover {
+  cursor: pointer;
+  color: #ffc107;
 }
 
 .otherBrands {
@@ -57,4 +81,10 @@
 .otherBrands li {
   font-family: "Arial", sans-serif;
   font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .div {
+    flex-basis: 100%;
+  }
 }
