@@ -4,7 +4,11 @@ import style from "./GameSlider.module.css";
 import { gamesArr } from "@/utils/data";
 import { GamesInfo } from "@/utils/types";
 
-const GameSlider: React.FC = () => {
+interface GameSliderProps {
+  gameType: "any" | "shooter" | "strategy";
+}
+
+const GameSlider: React.FC<GameSliderProps> = ({ gameType }) => {
   const [randomGames, setRandomGames] = useState<GamesInfo[]>([]);
 
   // Function to shuffle the array
@@ -17,10 +21,16 @@ const GameSlider: React.FC = () => {
   };
 
   useEffect(() => {
-    const shuffledGames: GamesInfo[] = shuffleArray(gamesArr);
+    let filteredGames: GamesInfo[] = gamesArr;
+    if (gameType === "shooter") {
+      filteredGames = gamesArr.filter((game) => game.genre === "Shooter");
+    } else if (gameType === "strategy") {
+      filteredGames = gamesArr.filter((game) => game.genre === "Strategy");
+    }
+    const shuffledGames: GamesInfo[] = shuffleArray(filteredGames);
     const randomGamesSubset = shuffledGames.slice(0, 20);
     setRandomGames(randomGamesSubset);
-  }, []);
+  }, [gameType]);
 
   return (
     <div className={`row ${style.gameSlider}`}>
