@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Header.module.css";
 import Button from "react-bootstrap/Button";
+import Register from "@/sideComponents/Register";
 
 const Header: React.FC = (props) => {
+  const [registerMe, setRegisterMe] = useState(false);
+
+  const onRegister: () => void = () => {
+    setRegisterMe((prevState) => !prevState);
+  };
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark ${style.nav}`}>
       <div className="container">
@@ -43,11 +49,16 @@ const Header: React.FC = (props) => {
               </a>
             </li>
           </ul>
-          <Button className={style.register} variant="warning">
+          <Button
+            onClick={onRegister}
+            className={style.register}
+            variant="warning"
+          >
             Register
           </Button>{" "}
         </div>
       </div>
+      {registerMe && <Register />}
     </nav>
   );
 };
