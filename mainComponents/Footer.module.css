@@ -14,6 +14,7 @@
   width: 15em;
   height: auto;
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 
 .flexContainer {
@@ -44,7 +45,7 @@
 
 .div ul li {
   margin-bottom: 5px;
-  padding-top: 1em;
+  padding-top: 0.6em;
   transition: color 0.3s ease;
 }
 
