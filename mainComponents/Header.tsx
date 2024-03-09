@@ -58,7 +58,7 @@ const Header: React.FC = (props) => {
           </Button>{" "}
         </div>
       </div>
-      {registerMe && <Register />}
+      {registerMe && <Register toggleRegister={onRegister} />}
     </nav>
   );
 };

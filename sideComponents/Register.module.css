@@ -1,8 +1,8 @@
 .modal {
   width: 80%;
-  max-width: 40em;
+  max-width: 36em;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -17,7 +17,8 @@
 }
 
 .logo {
-  width: 10em;
+  width: 11em;
+  padding-bottom: 1em;
 }
 
 .buttons {
@@ -28,8 +29,93 @@
 
 .buttons > button {
   width: 50%;
-  color: #000000;
+  color: grey;
   background-color: white;
   border: none;
   font-size: 1.5em;
+  transition: all 200ms ease-in;
+}
+
+.buttons > button:hover {
+  color: #000000;
+}
+
+.buttons > button:focus {
+  border-bottom: 1px solid #000000;
+  color: #000000;
+}
+
+.form > p {
+  text-align: center;
+  color: #757575;
+}
+
+.firstP {
+  padding-top: 5em;
+}
+
+.formDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 17em;
+  overflow-y: scroll;
+}
+
+.formDiv::-webkit-scrollbar {
+  display: none;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+  width: 95%;
+  max-width: 25em;
+}
+
+.form label {
+  padding-top: 0.5em;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.form input {
+  width: 100%;
+  border-radius: 5px;
+  height: 2.5em;
+  padding-left: 0.5em;
+  border: 1px solid grey;
+}
+
+.form button {
+  margin-top: 1em;
+  width: 100%;
+  height: 3em;
+  background-color: #404040;
+  color: white;
+  border-radius: 5px;
+  transition: all 200ms ease-in;
+}
+
+.form button:hover {
+  background-color: #808080;
+  border: 1px solid #808080;
+}
+
+.x {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 2em;
+  border: none;
+  background-color: white;
+  font-size: 1.3em;
+}
+
+@media screen and (max-width: 394px) {
+  .firstP {
+    padding-top: 7em;
+  }
 }
