@@ -18,3 +18,34 @@
 .gameSlider div::-webkit-scrollbar {
   display: none;
 }
+
+.scrollDiv {
+  position: absolute;
+  width: 9em;
+  left: 90%;
+  z-index: 3;
+  background-color: white;
+  top: -3em;
+}
+
+.scrollDiv button {
+  border-radius: 50%;
+  background-color: white;
+  width: 2em;
+  color: #404040;
+  height: 2em;
+  font-size: 1.4em;
+  transition: all 200ms ease-in;
+}
+
+.scrollDiv button:hover {
+  color: white;
+  background-color: #404040;
+  border: none;
+}
+
+@media screen and (max-width: 1219px) {
+  .scrollDiv {
+    display: none;
+  }
+}

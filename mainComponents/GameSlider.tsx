@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import GameCard from "../sideComponents/GameCard";
 import style from "./GameSlider.module.css";
 import { gamesArr } from "@/utils/data";
@@ -10,6 +10,7 @@ interface GameSliderProps {
 
 const GameSlider: React.FC<GameSliderProps> = ({ gameType }) => {
   const [randomGames, setRandomGames] = useState<GamesInfo[]>([]);
+  const elementRef = useRef(null);
 
   // Function to shuffle the array
   const shuffleArray = (array: GamesInfo[]) => {
@@ -32,15 +33,51 @@ const GameSlider: React.FC<GameSliderProps> = ({ gameType }) => {
     setRandomGames(randomGamesSubset);
   }, [gameType]);
 
+  const handleHorizantalScroll = (
+    element: HTMLElement | null,
+    speed: number,
+    distance: number,
+    step: number
+  ) => {
+    let scrollAmount = 0;
+    if (element === null) {
+      console.log("There is no HTML element");
+      return;
+    }
+    const slideTimer = setInterval(() => {
+      element.scrollLeft += step;
+      scrollAmount += Math.abs(step);
+      if (scrollAmount >= distance) {
+        clearInterval(slideTimer);
+      }
+    }, speed);
+  };
+
   return (
     <div className={`row ${style.gameSlider}`}>
+      <div className={style.scrollDiv}>
+        <button
+          onClick={() =>
+            handleHorizantalScroll(elementRef.current, 10, 500, -10)
+          }
+        >
+          {"<"}
+        </button>
+        <button
+          onClick={() =>
+            handleHorizantalScroll(elementRef.current, 10, 500, 10)
+          }
+        >
+          {">"}
+        </button>
+      </div>
       <div
         id="gameSlider"
         className={`carousel slide ${style.carousel}`}
         data-ride="carousel"
       >
         <div className={`carousel-inner ${style.carouselInner}`}>
-          <div className="row flex-nowrap overflow-auto">
+          <div className="row flex-nowrap overflow-auto" ref={elementRef}>
             {randomGames.map((game, index) => (
               <div key={index} className={`col-xl-3 ${style.carouselItem}`}>
                 <GameCard {...game} />
