@@ -29,12 +29,12 @@ const Header: React.FC = (props) => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className={`navbar-nav ml-auto ${style.myNav}`}>
             <li className="nav-item">
-              <a className="nav-link" href="#home">
+              <a className="nav-link" href="/">
                 News
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#link">
+              <a className="nav-link" href="/games">
                 Games
               </a>
             </li>
