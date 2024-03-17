@@ -5,7 +5,7 @@ import style from "./games.module.css";
 import { Game } from "@/utils/types";
 
 export default function Games() {
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useState<Game[]>([]);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -15,8 +15,8 @@ export default function Games() {
   }, [selectedRole]);
 
   const fetchGames = async () => {
-    setLoading(true); // Set loading to true when fetching data
-    setError(null); // Clear any previous errors
+    setLoading(true);
+    setError(null);
     try {
       let url = "https://gameshop-mh2m.onrender.com/games";
       if (selectedRole) {
@@ -33,7 +33,7 @@ export default function Games() {
       console.error("Error fetching games:", error);
       setError("Failed to fetch games. Please try again.");
     } finally {
-      setLoading(false); // Set loading to false regardless of success or failure
+      setLoading(false);
     }
   };
 
@@ -43,20 +43,56 @@ export default function Games() {
 
   return (
     <Layout>
-      <div className={style.roleFilter}>
-        <button onClick={() => handleRoleFilter(null)}>All</button>
-        <button onClick={() => handleRoleFilter("rpg")}>RPG</button>
-        <button onClick={() => handleRoleFilter("shooter")}>Shooter</button>
-        <button onClick={() => handleRoleFilter("strategy")}>Strategy</button>
-        <button onClick={() => handleRoleFilter("sport")}>Sport</button>
-        <button onClick={() => handleRoleFilter("action")}>Action</button>
+      <div className={`row ${style.roleFilter}`}>
+        <button
+          className="btn btn-primary"
+          onClick={() => handleRoleFilter(null)}
+        >
+          All
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={() => handleRoleFilter("rpg")}
+        >
+          RPG
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={() => handleRoleFilter("shooter")}
+        >
+          Shooter
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={() => handleRoleFilter("strategy")}
+        >
+          Strategy
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={() => handleRoleFilter("sport")}
+        >
+          Sport
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={() => handleRoleFilter("action")}
+        >
+          Action
+        </button>
       </div>
-      <div className={style.gamesContainer}>
-        {loading && <div className={style.loading}>Loading...</div>}
-        {error && <div className={style.error}>{error}</div>}
-        {!loading &&
-          !error &&
-          games.map((game: Game) => <ItemCard key={game.id} game={game} />)}
+      <div className="container">
+        <div className={`row ${style.gamesContainer}`}>
+          {loading && <div className={style.loading}>Loading...</div>}
+          {error && <div className={style.error}>{error}</div>}
+          {!loading &&
+            !error &&
+            games.map((game: Game) => (
+              <div className={style.gameDiv} key={game.id}>
+                <ItemCard game={game} />
+              </div>
+            ))}
+        </div>
       </div>
     </Layout>
   );

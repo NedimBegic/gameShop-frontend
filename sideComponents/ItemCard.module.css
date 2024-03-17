@@ -4,17 +4,17 @@
   padding: 10px;
   text-align: left;
   border-radius: 10px;
-  background-color: #f5f5f5; /* Gray background */
+  background-color: #f5f5f5;
   transition: transform 0.2s;
 }
 
 .itemCard:hover {
-  transform: scale(1.05); /* Scale up on hover */
+  transform: scale(1.05);
 }
 
 .image {
   width: 100%;
-  height: auto;
+  height: 13em;
   margin-bottom: 10px;
 }
 
@@ -23,6 +23,13 @@
   padding-left: 0.4em;
   font-weight: 400;
   margin-bottom: 10px;
+  height: 1em;
+  overflow-y: scroll;
+  margin-bottom: 1em;
+}
+
+.name::-webkit-scrollbar {
+  display: none;
 }
 
 .buttons {
