@@ -11,3 +11,15 @@ export interface GamesInfo {
   release_date: string;
   freetogame_profile_url: string;
 }
+
+export interface Game {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  image: string;
+  date: string;
+  role: string;
+  user_id: number;
+  nickName: string;
+}

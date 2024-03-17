@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import Layout from "@/app/Layout";
 import ItemCard from "@/sideComponents/ItemCard";
 import style from "./games.module.css";
+import { Game } from "@/utils/types";
 
 export default function Games() {
   const [games, setGames] = useState([]);
-  const [selectedRole, setSelectedRole] = useState(null);
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchGames();
@@ -36,7 +37,7 @@ export default function Games() {
     }
   };
 
-  const handleRoleFilter = (role) => {
+  const handleRoleFilter = (role: string | null) => {
     setSelectedRole(role);
   };
 
@@ -55,7 +56,7 @@ export default function Games() {
         {error && <div className={style.error}>{error}</div>}
         {!loading &&
           !error &&
-          games.map((game) => <ItemCard key={game.id} game={game} />)}
+          games.map((game: Game) => <ItemCard key={game.id} game={game} />)}
       </div>
     </Layout>
   );
