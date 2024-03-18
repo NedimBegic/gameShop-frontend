@@ -1,13 +1,6 @@
 import React from "react";
 import style from "./ItemCard.module.css";
-
-interface Game {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-  image: string;
-}
+import { Game } from "@/utils/types";
 
 interface Props {
   game: Game;
@@ -18,15 +11,24 @@ const ItemCard: React.FC<Props> = ({ game }) => {
     <div className={style.itemCard}>
       <img src={game.image} alt={game.name} className={style.image} />
       <h2 className={style.name}>{game.name}</h2>
+      <p className={style.desc}>{game.description}</p>
+      <div className={style.info}>
+        <span className={style.in}>
+          Genre: <span className={style.in2}> {game.role}</span>
+        </span>
+        <span className={style.in}>
+          Posten by: <a href={`/${game.nickName}`}>{game.nickName}</a>
+        </span>
+        <span className={style.in}>
+          Price:<span className={style.in2}> ${game.price.toFixed(2)}</span>
+        </span>
+      </div>
+
       <div className={style.buttons}>
-        <button className={`${style.button} ${style.infoButton}`}>
-          More Info
-        </button>
         <button className={`${style.button} ${style.cartButton}`}>
           Add to Cart
         </button>
       </div>
-      <p className={style.price}>${game.price.toFixed(2)}</p>
     </div>
   );
 };

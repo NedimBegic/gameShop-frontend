@@ -1,5 +1,5 @@
 .itemCard {
-  width: 15em;
+  width: 19em;
   border: 1px solid #ccc;
   padding: 10px;
   text-align: left;
@@ -10,6 +10,7 @@
 
 .itemCard:hover {
   transform: scale(1.05);
+  border: 1px solid #ffbd3f;
 }
 
 .image {
@@ -21,11 +22,11 @@
 .name {
   font-size: 1.4em;
   padding-left: 0.4em;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 10px;
   height: 1em;
   overflow-y: scroll;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 .name::-webkit-scrollbar {
@@ -34,7 +35,7 @@
 
 .buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   margin-bottom: 10px;
 }
 
@@ -48,16 +49,10 @@
   border-radius: 5px;
 }
 
-.infoButton {
-  background-color: #007bff;
-}
-
-.infoButton:hover {
-  background-color: #007bffdc;
-}
-
 .cartButton {
   background-color: #ffbd3f;
+  font-size: 1.1em;
+  margin-left: 0.4em;
 }
 
 .cartButton:hover {
@@ -65,10 +60,38 @@
 }
 
 .button:hover {
-  transform: scale(1.05); /* Scale up on hover */
+  transform: scale(1.05);
 }
 
-.price {
-  font-weight: bold;
-  padding-left: 0.8em;
+.in {
+  font-weight: 600;
+}
+
+.in2 {
+  font-weight: 400;
+}
+
+.desc {
+  height: 9em;
+  width: 90%;
+  margin-left: 0.4em;
+  overflow: scroll;
+  text-align: left;
+  font-size: 0.9em;
+  color: rgba(128, 128, 128, 0.93);
+  padding: 0.2em;
+  padding-bottom: 0.3em;
+  border-bottom-right-radius: 10px;
+  border-bottom: 1px solid #ffbd3f;
+}
+
+.desc::-webkit-scrollbar {
+  display: none;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.6em;
+  padding-left: 0.6em;
 }

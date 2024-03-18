@@ -39,10 +39,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: #101010;
   border-radius: 5px;
   margin-top: 1em;
+  text-align: center;
 }
 
 .error {
