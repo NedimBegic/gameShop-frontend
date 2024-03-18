@@ -73,7 +73,7 @@
 
 .desc {
   height: 9em;
-  width: 90%;
+  width: 95%;
   margin-left: 0.4em;
   overflow: scroll;
   text-align: left;
@@ -94,4 +94,10 @@
   flex-direction: column;
   margin-bottom: 0.6em;
   padding-left: 0.6em;
+}
+
+@media screen and (max-width: 311px) {
+  .itemCard {
+    width: 90%;
+  }
 }

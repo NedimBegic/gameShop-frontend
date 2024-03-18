@@ -39,3 +39,9 @@
     margin-left: 2em;
   }
 }
+
+@media screen and (max-width: 311px) {
+  .logo {
+    width: 50%;
+  }
+}
