@@ -2,13 +2,29 @@ import React, { useState } from "react";
 import style from "./Header.module.css";
 import Button from "react-bootstrap/Button";
 import Register from "@/sideComponents/Register";
+import AddProduct from "@/sideComponents/AddProduct";
 
 const Header: React.FC = (props) => {
   const [registerMe, setRegisterMe] = useState(false);
+  const [showAddProduct, setShowAddProduct] = useState(true);
 
   const onRegister: () => void = () => {
     setRegisterMe((prevState) => !prevState);
   };
+
+  const onAddProductClick = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setShowAddProduct(true);
+    } else {
+      setRegisterMe(true);
+    }
+  };
+
+  const toggleAddProduct = () => {
+    setShowAddProduct((prevState) => !prevState);
+  };
+
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark ${style.nav}`}>
       <div className="container">
@@ -39,7 +55,11 @@ const Header: React.FC = (props) => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#about">
+              <a
+                className="nav-link"
+                href="#add-productt"
+                onClick={onAddProductClick}
+              >
                 Add Product
               </a>
             </li>
@@ -58,7 +78,11 @@ const Header: React.FC = (props) => {
           </Button>{" "}
         </div>
       </div>
-      {registerMe && <Register toggleRegister={onRegister} />}
+      {registerMe ? (
+        <Register toggleRegister={onRegister} />
+      ) : (
+        showAddProduct && <AddProduct toggle={toggleAddProduct} />
+      )}
     </nav>
   );
 };
