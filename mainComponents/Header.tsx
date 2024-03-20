@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./Header.module.css";
 import Button from "react-bootstrap/Button";
 import Register from "@/sideComponents/Register";
@@ -6,16 +6,35 @@ import AddProduct from "@/sideComponents/AddProduct";
 
 const Header: React.FC = (props) => {
   const [registerMe, setRegisterMe] = useState(false);
-  const [showAddProduct, setShowAddProduct] = useState(true);
+  const [showAddProduct, setShowAddProduct] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const nickname = localStorage.getItem("nickname");
+    if (token && nickname) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const onRegister: () => void = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("nickname");
+      setIsLoggedIn(false);
+    } else {
+      setRegisterMe(true);
+    }
+  };
+
+  const toggleRegister = () => {
     setRegisterMe((prevState) => !prevState);
   };
 
   const onAddProductClick = () => {
     const token = localStorage.getItem("token");
     if (token) {
-      setShowAddProduct(true);
+      toggleAddProduct();
     } else {
       setRegisterMe(true);
     }
@@ -74,15 +93,14 @@ const Header: React.FC = (props) => {
             className={style.register}
             variant="warning"
           >
-            Register
+            {isLoggedIn ? "Log out" : "Register"}
           </Button>{" "}
         </div>
       </div>
-      {registerMe ? (
-        <Register toggleRegister={onRegister} />
-      ) : (
-        showAddProduct && <AddProduct toggle={toggleAddProduct} />
+      {registerMe && !isLoggedIn && (
+        <Register toggleRegister={toggleRegister} />
       )}
+      {showAddProduct && <AddProduct toggle={toggleAddProduct} />}
     </nav>
   );
 };

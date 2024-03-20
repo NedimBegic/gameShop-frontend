@@ -29,6 +29,7 @@
 
 .register {
   font-weight: bold;
+  text-wrap: nowrap;
 }
 
 @media screen and (max-width: 991px) {

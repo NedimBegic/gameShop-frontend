@@ -51,7 +51,7 @@
 }
 
 .firstP {
-  padding-top: 5em;
+  padding-top: 15em;
 }
 
 .formDiv {
@@ -114,8 +114,14 @@
   font-size: 1.3em;
 }
 
+.errorMessage {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 394px) {
   .firstP {
-    padding-top: 7em;
+    padding-top: 17em;
   }
 }

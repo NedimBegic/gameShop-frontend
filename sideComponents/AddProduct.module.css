@@ -1,6 +1,6 @@
 .modal {
   width: 80%;
-  max-width: 30em;
+  max-width: 25em;
   position: fixed;
   z-index: 1;
   left: 50%;
@@ -15,6 +15,7 @@
   padding: 2em;
   border-radius: 10px;
   overflow-y: scroll;
+  height: 90%;
 }
 
 .modal::-webkit-scrollbar {
@@ -45,7 +46,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 1em;
-  width: 95%;
+  width: 100%;
   max-width: 25em;
   overflow-y: scroll;
 }
@@ -58,6 +59,10 @@
   padding-top: 0.1em;
   font-weight: 600;
   align-self: flex-start;
+}
+
+.form > * {
+  width: 90%;
 }
 
 .form input,
@@ -87,12 +92,7 @@
 }
 
 .form textarea {
-  height: 4em;
-  width: 110%;
-}
-
-.des {
-  margin-left: -1em;
+  height: 6em;
 }
 
 .scrol {
@@ -103,9 +103,9 @@
   display: none;
 }
 
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 419px) {
   .modal img {
-    width: 90%;
+    width: 80%;
   }
 }
 
