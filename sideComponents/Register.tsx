@@ -39,7 +39,7 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
 
     try {
       const response = await fetch(
-        "https://gameshop-mh2m.onrender.com/auth/register",
+        `${process.env.NEXT_PUBLIC_MY_BACKEND}/auth/register`,
         {
           method: "POST",
           body: formData,
@@ -68,7 +68,7 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
 
     try {
       const response = await fetch(
-        "https://gameshop-mh2m.onrender.com/auth/login",
+        `${process.env.NEXT_PUBLIC_MY_BACKEND}/auth/login`,
         {
           method: "POST",
           body: formData,
