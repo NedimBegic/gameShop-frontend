@@ -7,6 +7,9 @@ interface Props {
 }
 
 const ItemCard: React.FC<Props> = ({ game }) => {
+  // Convert the data property to a readable date format
+  const formattedDate = new Date(game.date).toLocaleDateString();
+
   return (
     <div className={style.itemCard}>
       <img src={game.image} alt={game.name} className={style.image} />
@@ -17,10 +20,13 @@ const ItemCard: React.FC<Props> = ({ game }) => {
           Genre: <span className={style.in2}> {game.role}</span>
         </span>
         <span className={style.in}>
-          Posten by: <a href={`/${game.nickName}`}>{game.nickName}</a>
+          Posted by: <a href={`/${game.nickName}`}>{game.nickName}</a>
         </span>
         <span className={style.in}>
           Price:<span className={style.in2}> ${game.price.toFixed(2)}</span>
+        </span>
+        <span className={style.in}>
+          Release Date:<span className={style.in2}> {formattedDate}</span>
         </span>
       </div>
 

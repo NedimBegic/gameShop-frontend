@@ -89,3 +89,9 @@
     flex-basis: 100%;
   }
 }
+
+@media screen and (max-width: 236px) {
+  .logo {
+    width: 80%;
+  }
+}

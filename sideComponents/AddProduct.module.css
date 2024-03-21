@@ -103,6 +103,11 @@
   display: none;
 }
 
+.message {
+  color: red;
+  text-align: center;
+}
+
 @media screen and (max-width: 419px) {
   .modal img {
     width: 80%;

@@ -87,7 +87,7 @@ export default function Games() {
           {error && <div className={style.error}>{error}</div>}
           {!loading &&
             !error &&
-            games.map((game: Game) => (
+            games.reverse().map((game: Game) => (
               <div className={style.gameDiv} key={game.id}>
                 <ItemCard game={game} />
               </div>
