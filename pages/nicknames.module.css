@@ -45,3 +45,16 @@
   margin-bottom: 20px;
   color: #333;
 }
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: auto;
+  gap: 1em;
+  margin-top: -1.3em;
+  margin-bottom: 2em;
+}
+
+.buttonsContainer button {
+  width: 10em;
+}

@@ -25,6 +25,7 @@ const Header: React.FC = (props) => {
       localStorage.removeItem("token");
       localStorage.removeItem("nickname");
       setIsLoggedIn(false);
+      window.location.reload();
     } else {
       setRegisterMe(true);
     }

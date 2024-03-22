@@ -21,7 +21,14 @@ const ItemCard: React.FC<Props> = ({ game }) => {
           Genre: <span className={style.in2}> {game.role}</span>
         </span>
         <span className={style.in}>
-          Posted by: <Link href={`/${game.nickName}`}>{game.nickName}</Link>
+          Posted by:{" "}
+          <Link
+            href={{
+              pathname: `/${game.nickName}`,
+            }}
+          >
+            {game.nickName}
+          </Link>
         </span>
         <span className={style.in}>
           Price:<span className={style.in2}> ${game.price.toFixed(2)}</span>
