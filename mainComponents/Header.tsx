@@ -3,11 +3,14 @@ import style from "./Header.module.css";
 import Button from "react-bootstrap/Button";
 import Register from "@/sideComponents/Register";
 import AddProduct from "@/sideComponents/AddProduct";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header: React.FC = (props) => {
   const [registerMe, setRegisterMe] = useState(false);
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -40,6 +43,15 @@ const Header: React.FC = (props) => {
     }
   };
 
+  const onMyProfile = () => {
+    const nickName = localStorage.getItem("nickname");
+    if (nickName) {
+      router.push(`${nickName}`);
+    } else {
+      setRegisterMe(true);
+    }
+  };
+
   const toggleAddProduct = () => {
     setShowAddProduct((prevState) => !prevState);
   };
@@ -47,9 +59,9 @@ const Header: React.FC = (props) => {
   return (
     <nav className={`navbar navbar-expand-lg navbar-dark ${style.nav}`}>
       <div className="container">
-        <a className="navbar-brand" href="#home">
+        <Link className="navbar-brand" href="/">
           <img className={style.logo} src="/gameShop.png" alt="Game Shop" />
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -64,26 +76,22 @@ const Header: React.FC = (props) => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className={`navbar-nav ml-auto ${style.myNav}`}>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" href="/">
                 News
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/games">
+              <Link className="nav-link" href="/games">
                 Games
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link"
-                href="#add-productt"
-                onClick={onAddProductClick}
-              >
+              <a className="nav-link" onClick={onAddProductClick}>
                 Add Product
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#about">
+              <a className="nav-link" onClick={onMyProfile}>
                 My Profile
               </a>
             </li>

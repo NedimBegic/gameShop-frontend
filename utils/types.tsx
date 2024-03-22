@@ -13,13 +13,21 @@ export interface GamesInfo {
 }
 
 export interface Game {
-  id: number;
+  id?: number;
   name: string;
   price: number;
   description: string;
   image: string;
   date: string;
   role: string;
-  user_id: number;
+  user_id?: number;
+  nickName?: string | undefined;
+}
+
+// Define the interface for user data
+export interface User {
   nickName: string;
+  email: string;
+  userImageUrl: string;
+  games: Game[];
 }

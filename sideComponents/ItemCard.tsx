@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./ItemCard.module.css";
 import { Game } from "@/utils/types";
+import Link from "next/link";
 
 interface Props {
   game: Game;
@@ -20,7 +21,7 @@ const ItemCard: React.FC<Props> = ({ game }) => {
           Genre: <span className={style.in2}> {game.role}</span>
         </span>
         <span className={style.in}>
-          Posted by: <a href={`/${game.nickName}`}>{game.nickName}</a>
+          Posted by: <Link href={`/${game.nickName}`}>{game.nickName}</Link>
         </span>
         <span className={style.in}>
           Price:<span className={style.in2}> ${game.price.toFixed(2)}</span>

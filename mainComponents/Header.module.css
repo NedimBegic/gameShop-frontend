@@ -19,6 +19,10 @@
   color: white;
 }
 
+.nav a:hover {
+  cursor: pointer !important;
+}
+
 .myNav a:hover {
   color: #000000;
 }
