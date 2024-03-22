@@ -5,6 +5,7 @@ import style from "./nicknames.module.css";
 import ItemCard from "@/sideComponents/ItemCard";
 import { User } from "@/utils/types";
 import AddProduct from "@/sideComponents/AddProduct";
+import ImageUpdate from "@/sideComponents/ImageUpdate";
 
 const ProfilePage: React.FC = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const ProfilePage: React.FC = () => {
   const [isMy, setIsMy] = useState(false);
   const [userData, setUserData] = useState<User | null>(null);
   const [addGame, setAddGame] = useState(false);
+  const [imageChange, setImageChange] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -41,7 +43,7 @@ const ProfilePage: React.FC = () => {
   }, [nickname]);
 
   const handleChangePicture = () => {
-    // Add your logic for changing the profile picture here
+    setImageChange((prevState) => !prevState);
   };
 
   const handleAddGame = () => {
@@ -51,6 +53,7 @@ const ProfilePage: React.FC = () => {
   return (
     <Layout>
       {addGame && <AddProduct toggle={handleAddGame} />}
+      {imageChange && <ImageUpdate toggle={handleChangePicture} />}
       {userData && (
         <div className={`${style.profilePage} container`}>
           <div className={style.userDetails}>

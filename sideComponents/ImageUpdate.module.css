@@ -1,0 +1,66 @@
+/* ImageUpdate.module.css */
+
+.pictureUpdateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  position: fixed;
+  z-index: 6;
+  background-color: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 80%;
+  max-width: 30em;
+}
+
+.logoImg {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.updateForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column !important;
+  width: 90%;
+}
+
+.formGroup > * {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.x {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 2em;
+  border: none;
+  background-color: white;
+  font-size: 1.3em;
+}
+
+.formControlFile {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+@media (max-width: 355px) {
+  .logoImg {
+    width: 75%;
+  }
+}
