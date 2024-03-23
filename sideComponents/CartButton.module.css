@@ -1,5 +1,15 @@
 .cartButton {
   cursor: pointer;
+  color: #010101;
+  background-color: white;
+  margin-right: 2em;
+  padding: 0.2em 1em;
+  border-radius: 13px;
+  gap: 1em;
+}
+
+.icon {
+  color: #ffc107;
 }
 
 .cartButton:hover {
