@@ -14,6 +14,7 @@ const ProfilePage: React.FC = () => {
   const [userData, setUserData] = useState<User | null>(null);
   const [addGame, setAddGame] = useState(false);
   const [imageChange, setImageChange] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Track loading state
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -29,10 +30,13 @@ const ProfilePage: React.FC = () => {
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
+      } finally {
+        setIsLoading(false); // Set loading state to false when done fetching
       }
     };
 
     if (nickname) {
+      setIsLoading(true); // Set loading state to true before fetching
       fetchUserData();
     }
 
@@ -52,6 +56,11 @@ const ProfilePage: React.FC = () => {
 
   return (
     <Layout>
+      {isLoading && ( // Render loading indicator when isLoading is true
+        <div className={style.loadingContainer}>
+          <p>Loading...</p>
+        </div>
+      )}
       {addGame && <AddProduct toggle={handleAddGame} />}
       {imageChange && <ImageUpdate toggle={handleChangePicture} />}
       {userData && (

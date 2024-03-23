@@ -1,6 +1,5 @@
-// PictureUpdateComponent.tsx
-
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import styles from "./ImageUpdate.module.css";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import BackgroundBlur from "./BackgroundBlur";
@@ -8,9 +7,61 @@ import BackgroundBlur from "./BackgroundBlur";
 const PictureUpdateComponent: React.FC<{ toggle: () => void }> = ({
   toggle,
 }) => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const router = useRouter();
+  const [message, setMessage] = useState<string>("");
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const token = localStorage.getItem("token");
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setSelectedFile(file);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Handle submit logic here
+
+    if (!selectedFile) {
+      console.error("No file selected");
+      setMessage("No file selected!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    const { nickname } = router.query;
+
+    if (typeof nickname !== "string") {
+      console.error("Invalid nickname");
+      return;
+    }
+
+    try {
+      setMessage("Updating image...");
+      const response = await fetch(
+        `https://gameshop-mh2m.onrender.com/user/${nickname}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json();
+        setMessage(data.message);
+        if (data.success) {
+          window.location.reload();
+        }
+      } else {
+        setMessage("Failed to update image");
+        throw new Error("Failed to update image");
+      }
+    } catch (error) {
+      console.error("Error updating image:", error);
+    }
   };
 
   return (
@@ -30,8 +81,10 @@ const PictureUpdateComponent: React.FC<{ toggle: () => void }> = ({
               type="file"
               className={`form-control-file ${styles.formControlFile}`}
               id="imageInput"
+              onChange={handleFileChange}
             />
           </div>
+          <p className={styles.message}>{message}</p>
           <button type="submit" className={`btn btn-primary ${styles.btn}`}>
             Submit
           </button>

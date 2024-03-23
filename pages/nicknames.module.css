@@ -58,3 +58,41 @@
 .buttonsContainer button {
   width: 10em;
 }
+
+/* loading.css */
+
+.loadingContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.loadingContainer > * {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+}
+
+@media (max-width: 320px) {
+  .buttonsContainer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 263px) {
+  .userImage {
+    font-size: 80%;
+  }
+}
+
+@media (max-width: 213px) {
+  .userImage {
+    font-size: 50%;
+  }
+
+  .buttonsContainer > * {
+    font-size: 80%;
+  }
+}
