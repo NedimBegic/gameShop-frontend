@@ -5,6 +5,7 @@ import Register from "@/sideComponents/Register";
 import AddProduct from "@/sideComponents/AddProduct";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import CartButton from "@/sideComponents/CartButton";
 
 const Header: React.FC = (props) => {
   const [registerMe, setRegisterMe] = useState(false);
@@ -97,6 +98,7 @@ const Header: React.FC = (props) => {
               </a>
             </li>
           </ul>
+          <CartButton itemCount={0} />
           <Button
             onClick={onRegister}
             className={style.register}

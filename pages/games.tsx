@@ -83,7 +83,11 @@ export default function Games() {
       </div>
       <div className="container">
         <div className={`row ${style.gamesContainer}`}>
-          {loading && <div className={style.loading}>Loading...</div>}
+          {loading && (
+            <div className={style.loading}>
+              Loading server... (≈ 30 seconds)
+            </div>
+          )}
           {error && <div className={style.error}>{error}</div>}
           {!loading &&
             !error &&

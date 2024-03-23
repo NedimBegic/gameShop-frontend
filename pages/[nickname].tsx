@@ -56,9 +56,9 @@ const ProfilePage: React.FC = () => {
 
   return (
     <Layout>
-      {isLoading && ( // Render loading indicator when isLoading is true
+      {isLoading && (
         <div className={style.loadingContainer}>
-          <p>Loading...</p>
+          <p> Loading server... (≈ 30 seconds)</p>
         </div>
       )}
       {addGame && <AddProduct toggle={handleAddGame} />}
@@ -91,13 +91,17 @@ const ProfilePage: React.FC = () => {
           )}
           <h2 className={style.gamesTitle}>Games by {userData.nickName}</h2>
           <div className={style.gamesContainer}>
-            {userData.games.map((game, index) => {
-              const gameWithNickname = {
-                ...game,
-                nickName: String(nickname || ""),
-              };
-              return <ItemCard key={index} game={gameWithNickname} />;
-            })}
+            {userData.games.length < 1 ? (
+              <p>{nickname} didn't post any games yet</p>
+            ) : (
+              userData.games.map((game, index) => {
+                const gameWithNickname = {
+                  ...game,
+                  nickName: String(nickname || ""),
+                };
+                return <ItemCard key={index} game={gameWithNickname} />;
+              })
+            )}
           </div>
         </div>
       )}

@@ -1,0 +1,16 @@
+.cartButton {
+  cursor: pointer;
+}
+
+.cartButton:hover {
+  opacity: 0.8;
+}
+
+.cartIcon {
+  width: 30px; /* Adjust size as needed */
+}
+
+.itemCount {
+  font-weight: bold;
+  font-size: 1.2em; /* Adjust size as needed */
+}

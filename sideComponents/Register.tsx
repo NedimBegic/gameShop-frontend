@@ -33,11 +33,14 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
     formData.append("email", email);
     formData.append("nickName", nickname);
     formData.append("password", password);
+    formData.append("confirmPassword", confirmPassword);
     if (file) {
       formData.append("file", file);
     }
 
     try {
+      setErrorMessage("Creating account...");
+      console.log();
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_MY_BACKEND}/auth/register`,
         {
@@ -50,8 +53,9 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
       if (data.success) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("nickname", data.data.nickName);
-        toggleRegister();
         router.push("/");
+        window.location.reload();
+        toggleRegister();
       } else {
         setErrorMessage(data.message);
       }
