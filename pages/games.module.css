@@ -43,6 +43,7 @@
   border-radius: 5px;
   margin-top: 1em;
   text-align: center;
+  font-size: 1.4em;
 }
 
 .error {
@@ -58,4 +59,10 @@
 .gameDiv {
   width: auto;
   margin-bottom: 1.4em;
+}
+
+@media (max-width: 385px) {
+  .roleFilter button {
+    font-size: 0.8em;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import style from "./Header.module.css";
 import Button from "react-bootstrap/Button";
 import Register from "@/sideComponents/Register";
@@ -11,6 +11,7 @@ const Header: React.FC = (props) => {
   const [registerMe, setRegisterMe] = useState(false);
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -58,8 +59,30 @@ const Header: React.FC = (props) => {
     setShowAddProduct((prevState) => !prevState);
   };
 
+  // Function to handle scroll event
+  const handleScroll = () => {
+    const header = headerRef.current;
+    if (header) {
+      if (window.pageYOffset > 40) {
+        header.classList.add(style["sticky-nav"]);
+      } else {
+        header.classList.remove(style["sticky-nav"]);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark ${style.nav}`}>
+    <nav
+      ref={headerRef}
+      className={`navbar navbar-expand-lg navbar-dark ${style.nav}`}
+    >
       <div className="container">
         <Link className="navbar-brand" href="/">
           <img className={style.logo} src="/gameShop.png" alt="Game Shop" />
@@ -98,7 +121,7 @@ const Header: React.FC = (props) => {
               </a>
             </li>
           </ul>
-          <CartButton itemCount={0} />
+          <CartButton />
           <Button
             onClick={onRegister}
             className={style.register}

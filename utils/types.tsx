@@ -31,3 +31,8 @@ export interface User {
   userImageUrl: string;
   games: Game[];
 }
+
+export interface CartObject {
+  items: any[];
+  itemCount: number;
+}

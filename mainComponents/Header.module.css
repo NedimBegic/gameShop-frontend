@@ -9,6 +9,23 @@
   padding-left: 2em;
 }
 
+@keyframes slideFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  animation: slideFromTop 1s ease forwards;
+}
+
 .logo {
   width: 10em;
 }

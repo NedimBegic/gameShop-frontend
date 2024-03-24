@@ -1,22 +1,28 @@
 import React, { createContext, useState, FC, ReactNode } from "react";
 
-export const ComponentContext = createContext({});
+// Define the type for the context value
+interface CartContextValue {
+  isProductAdded: boolean;
+  setIsProductAdded: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+// Create the context with an initial value
+export const CartContext = createContext<CartContextValue>({
+  isProductAdded: false,
+  setIsProductAdded: () => {},
+});
 
 const ProductProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [showAddProduct, setShowAddProduct] = useState(false);
-  const toggleAddProduct = () => {
-    setShowAddProduct((prevState) => !prevState);
-  };
+  const [isProductAdded, setIsProductAdded] = useState(false);
 
-  const ctx = {
-    showAddProduct,
-    toggleAddProduct,
+  // Create the context value object
+  const contextValue: CartContextValue = {
+    isProductAdded,
+    setIsProductAdded,
   };
 
   return (
-    <ComponentContext.Provider value={ctx}>
-      {children}
-    </ComponentContext.Provider>
+    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 };
 
