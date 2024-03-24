@@ -26,6 +26,7 @@ const Header: React.FC = (props) => {
     if (isLoggedIn) {
       localStorage.removeItem("token");
       localStorage.removeItem("nickname");
+      localStorage.removeItem("cart");
       setIsLoggedIn(false);
       window.location.reload();
     } else {

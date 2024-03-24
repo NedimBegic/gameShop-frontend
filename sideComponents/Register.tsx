@@ -40,7 +40,6 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
 
     try {
       setErrorMessage("Creating account...");
-      console.log();
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_MY_BACKEND}/auth/register`,
         {
