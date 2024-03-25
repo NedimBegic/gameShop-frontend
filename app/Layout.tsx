@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "@/mainComponents/Header";
 import ProductProvider from "@/context/Components";
+
 type LayoutProps = {
   children: ReactNode;
 };

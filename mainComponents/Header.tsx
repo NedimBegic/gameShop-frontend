@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import style from "./Header.module.css";
 import Button from "react-bootstrap/Button";
 import Register from "@/sideComponents/Register";
@@ -6,6 +6,8 @@ import AddProduct from "@/sideComponents/AddProduct";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CartButton from "@/sideComponents/CartButton";
+import CartModule from "@/sideComponents/CartModule";
+import { CartContext } from "@/context/Components";
 
 const Header: React.FC = (props) => {
   const [registerMe, setRegisterMe] = useState(false);
@@ -13,6 +15,7 @@ const Header: React.FC = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const { isCart } = useContext(CartContext);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -136,6 +139,7 @@ const Header: React.FC = (props) => {
         <Register toggleRegister={toggleRegister} />
       )}
       {showAddProduct && <AddProduct toggle={toggleAddProduct} />}
+      {isCart && <CartModule />}
     </nav>
   );
 };

@@ -1,0 +1,92 @@
+.cartModule {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 40em;
+  padding: 20px;
+  z-index: 5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.x {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  width: 2em;
+  border: none;
+  background-color: white;
+  font-size: 1.3em;
+}
+.itemsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.itemDetails {
+  flex-grow: 1;
+}
+
+.itemName {
+  font-weight: bold;
+}
+
+.itemPrice {
+  margin-top: 5px;
+}
+
+.discardButton {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.discardButton:hover {
+  background-color: #c82333;
+}
+
+.checkoutContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.buyButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.buyButton:hover {
+  background-color: #0056b3;
+}

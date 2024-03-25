@@ -7,15 +7,18 @@ import { CartContext } from "@/context/Components";
 const CartButton: React.FC = () => {
   const [pulsing, setPulsing] = useState(false);
   const [itemCount, setItemCount] = useState(0);
-  const { isProductAdded } = useContext(CartContext);
+  const { isProductAdded, setIsCart } = useContext(CartContext);
 
   useEffect(() => {
-    // Function to handle storage change
     const handleStorageChange = () => {
       const cartString = localStorage.getItem("cart");
       if (cartString) {
         const cart = JSON.parse(cartString);
-        setItemCount(cart.itemCount);
+        if (cart.items && cart.items.length > 0) {
+          setItemCount(cart.itemCount);
+        } else {
+          setItemCount(0);
+        }
       }
     };
 
@@ -30,11 +33,16 @@ const CartButton: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [itemCount]);
 
+  const toggleCartModule = () => {
+    setIsCart((prevState) => !prevState);
+  };
+
   return (
     <div
       className={`d-flex align-items-center ${style.cartButton} ${
         pulsing ? style["pulse-animation"] : ""
       }`}
+      onClick={toggleCartModule}
     >
       <div className="me-2">
         <FontAwesomeIcon className={style.icon} icon={faCartShopping} />
