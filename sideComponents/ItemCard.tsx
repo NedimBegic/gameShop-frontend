@@ -4,6 +4,7 @@ import { Game } from "@/utils/types";
 import Link from "next/link";
 import Register from "./Register";
 import { CartContext } from "@/context/Components";
+import ErrorModule from "@/mainComponents/ErrorModule";
 
 interface Props {
   game: Game;
@@ -12,21 +13,36 @@ interface Props {
 const ItemCard: React.FC<Props> = ({ game }) => {
   const [notLogged, setNotLogged] = useState(false);
   const { setIsProductAdded } = useContext(CartContext);
+  const [isAdded, setIsAdded] = useState(false);
 
   // Convert the data property to a readable date format
   const formattedDate = new Date(game.date).toLocaleDateString();
 
+  const toggelError = () => {
+    setIsAdded((prevState) => !prevState);
+  };
   const addToCart = () => {
     const token = localStorage.getItem("token");
     if (!token) {
       setNotLogged(true);
       return;
     }
+
     const gameObj = { ...game };
 
     // Retrieve cart from localStorage or create a new one if it doesn't exist
     const cartString = localStorage.getItem("cart");
     const cart = cartString ? JSON.parse(cartString) : { items: [] };
+
+    // Check if the game is already in the cart
+    const isGameAlreadyAdded = cart.items.some(
+      (item: Game) => item.id === gameObj.id
+    );
+
+    if (isGameAlreadyAdded) {
+      toggelError();
+      return;
+    }
 
     // Add gameObj to cart items
     cart.items.push(gameObj);
@@ -36,7 +52,7 @@ const ItemCard: React.FC<Props> = ({ game }) => {
 
     // Store updated cart back to localStorage
     localStorage.setItem("cart", JSON.stringify(cart));
-    // change state to triger render fo CartButton
+    // change state to trigger render of CartButton
     setIsProductAdded((prevState) => !prevState);
   };
 
@@ -47,6 +63,12 @@ const ItemCard: React.FC<Props> = ({ game }) => {
   return (
     <div>
       {notLogged && <Register toggleRegister={toggleRegister} />}
+      {isAdded && (
+        <ErrorModule
+          message="Game is already added to cart"
+          toggle={toggelError}
+        />
+      )}
       <div className={style.itemCard}>
         <img src={game.image} alt={game.name} className={style.image} />
         <h2 className={style.name}>{game.name}</h2>
