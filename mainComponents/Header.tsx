@@ -6,16 +6,20 @@ import AddProduct from "@/sideComponents/AddProduct";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CartButton from "@/sideComponents/CartButton";
-import CartModule from "@/sideComponents/CartModule";
 import { CartContext } from "@/context/Components";
+import ErrorModule from "./ErrorModule";
 
-const Header: React.FC = (props) => {
+const Header: React.FC<{ getState: (state: boolean) => void }> = (props) => {
   const [registerMe, setRegisterMe] = useState(false);
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { isCart } = useContext(CartContext);
+  const { isCart, buyedGames, setBuyedGames } = useContext(CartContext);
+
+  useEffect(() => {
+    props.getState(isCart);
+  }, [isCart]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -39,6 +43,10 @@ const Header: React.FC = (props) => {
 
   const toggleRegister = () => {
     setRegisterMe((prevState) => !prevState);
+  };
+
+  const toggleBuyedGamesErrorModule = () => {
+    setBuyedGames((prevState) => !prevState);
   };
 
   const onAddProductClick = () => {
@@ -139,7 +147,13 @@ const Header: React.FC = (props) => {
         <Register toggleRegister={toggleRegister} />
       )}
       {showAddProduct && <AddProduct toggle={toggleAddProduct} />}
-      {isCart && <CartModule />}
+
+      {buyedGames && (
+        <ErrorModule
+          toggle={toggleBuyedGamesErrorModule}
+          message="You have successfully purchased all the games"
+        />
+      )}
     </nav>
   );
 };

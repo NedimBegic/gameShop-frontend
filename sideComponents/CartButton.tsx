@@ -19,6 +19,8 @@ const CartButton: React.FC = () => {
         } else {
           setItemCount(0);
         }
+      } else {
+        setItemCount(0);
       }
     };
 

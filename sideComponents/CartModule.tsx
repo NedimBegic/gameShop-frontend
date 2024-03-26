@@ -3,13 +3,13 @@ import { Game } from "@/utils/types";
 import styles from "./CartModule.module.css";
 import { CartContext } from "@/context/Components";
 import BackgroundBlur from "./BackgroundBlur";
+import ErrorModule from "@/mainComponents/ErrorModule";
 
-interface Props {}
-
-const CartModule: React.FC<Props> = () => {
+const CartModule: React.FC = () => {
   const [cartItems, setCartItems] = useState<Game[]>([]);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const { setIsCart, setIsProductAdded } = useContext(CartContext);
+  const { setIsCart, setIsProductAdded, setBuyedGames } =
+    useContext(CartContext);
 
   const toggleCart = () => {
     setIsCart((prevState) => !prevState);
@@ -43,17 +43,29 @@ const CartModule: React.FC<Props> = () => {
   };
 
   const handleBuy = () => {
-    // Logic for buying the games
-    console.log("Buying games...");
+    // Remove cart from localStorage
+    localStorage.removeItem("cart");
+    setCartItems([]);
+    // trigger realod of CartButton component
+    setIsProductAdded((prevState) => !prevState);
+    // open module to say games are added
+    setBuyedGames((prevState) => !prevState);
+    // close this component
+    toggleCart();
   };
 
   return (
     <div>
       <BackgroundBlur toggleFunc={toggleCart} />
-      <div className={styles.cartModule}>
+      <div
+        className={`${styles.cartModule} ${
+          cartItems.length === 0 ? styles.emptyCartModule : ""
+        }`}
+      >
         <button onClick={toggleCart} className={styles.x}>
           X
         </button>
+        <img className={styles.logo} src="/gameShopWhite.png" alt="logo" />
         <div className={styles.itemsContainer}>
           {cartItems.length === 0 ? (
             <p>Cart is empty</p>
@@ -73,7 +85,7 @@ const CartModule: React.FC<Props> = () => {
                   className={styles.discardButton}
                   onClick={() => handleDiscard(index)}
                 >
-                  Discard
+                  X
                 </button>
               </div>
             ))
