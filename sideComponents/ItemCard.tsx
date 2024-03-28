@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import style from "./ItemCard.module.css";
 import { Game } from "@/utils/types";
 import Link from "next/link";
-import Register from "./Register";
 import { CartContext } from "@/context/Components";
 import ErrorModule from "@/mainComponents/ErrorModule";
 
@@ -11,20 +10,29 @@ interface Props {
 }
 
 const ItemCard: React.FC<Props> = ({ game }) => {
-  const [notLogged, setNotLogged] = useState(false);
-  const { setIsProductAdded } = useContext(CartContext);
+  const {
+    setIsProductAdded,
+    isLoggedIn,
+    setIsLoggedIn,
+    setIsRegister,
+    buyedGames,
+    setBuyedGames,
+  } = useContext(CartContext);
   const [isAdded, setIsAdded] = useState(false);
 
   // Convert the data property to a readable date format
   const formattedDate = new Date(game.date).toLocaleDateString();
 
   const toggelError = () => {
-    setIsAdded((prevState) => !prevState);
+    setBuyedGames((prevBuyedGames) => ({
+      ...prevBuyedGames,
+      isBuyed: !prevBuyedGames.isBuyed,
+      message: "Game is already added to cart",
+    }));
   };
   const addToCart = () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      setNotLogged(true);
+    if (!isLoggedIn) {
+      setIsRegister((prevState) => !prevState);
       return;
     }
 
@@ -56,19 +64,8 @@ const ItemCard: React.FC<Props> = ({ game }) => {
     setIsProductAdded((prevState) => !prevState);
   };
 
-  const toggleRegister = () => {
-    setNotLogged((prevState) => !prevState);
-  };
-
   return (
     <div>
-      {notLogged && <Register toggleRegister={toggleRegister} />}
-      {isAdded && (
-        <ErrorModule
-          message="Game is already added to cart"
-          toggle={toggelError}
-        />
-      )}
       <div className={style.itemCard}>
         <img src={game.image} alt={game.name} className={style.image} />
         <h2 className={style.name}>{game.name}</h2>

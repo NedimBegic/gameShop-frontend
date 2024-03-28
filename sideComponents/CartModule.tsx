@@ -3,7 +3,6 @@ import { Game } from "@/utils/types";
 import styles from "./CartModule.module.css";
 import { CartContext } from "@/context/Components";
 import BackgroundBlur from "./BackgroundBlur";
-import ErrorModule from "@/mainComponents/ErrorModule";
 
 const CartModule: React.FC = () => {
   const [cartItems, setCartItems] = useState<Game[]>([]);
@@ -49,7 +48,11 @@ const CartModule: React.FC = () => {
     // trigger realod of CartButton component
     setIsProductAdded((prevState) => !prevState);
     // open module to say games are added
-    setBuyedGames((prevState) => !prevState);
+    setBuyedGames((prevBuyedGames) => ({
+      ...prevBuyedGames,
+      isBuyed: !prevBuyedGames.isBuyed,
+      message: "You have successfully purchased all the games",
+    }));
     // close this component
     toggleCart();
   };

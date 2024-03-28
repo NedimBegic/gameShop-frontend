@@ -1,33 +1,38 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import style from "./Header.module.css";
 import Button from "react-bootstrap/Button";
-import Register from "@/sideComponents/Register";
-import AddProduct from "@/sideComponents/AddProduct";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import CartButton from "@/sideComponents/CartButton";
 import { CartContext } from "@/context/Components";
-import ErrorModule from "./ErrorModule";
+import { BuyedGames } from "@/utils/types";
 
-const Header: React.FC<{ getState: (state: boolean) => void }> = (props) => {
-  const [registerMe, setRegisterMe] = useState(false);
-  const [showAddProduct, setShowAddProduct] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Header: React.FC<{
+  getState: (
+    cartState: boolean,
+    registerState: boolean,
+    loggedState: boolean,
+    productState: boolean,
+    errorState: BuyedGames
+  ) => void;
+}> = (props) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { isCart, buyedGames, setBuyedGames } = useContext(CartContext);
+  const {
+    isCart,
+    buyedGames,
+    setBuyedGames,
+    isRegister,
+    setIsRegister,
+    isLoggedIn,
+    setIsLoggedIn,
+    showAddProduct,
+    setShowAddProduct,
+  } = useContext(CartContext);
 
   useEffect(() => {
-    props.getState(isCart);
-  }, [isCart]);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const nickname = localStorage.getItem("nickname");
-    if (token && nickname) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+    props.getState(isCart, isRegister, isLoggedIn, showAddProduct, buyedGames);
+  }, [isCart, isRegister, isLoggedIn, showAddProduct, buyedGames]);
 
   const onRegister: () => void = () => {
     if (isLoggedIn) {
@@ -37,16 +42,8 @@ const Header: React.FC<{ getState: (state: boolean) => void }> = (props) => {
       setIsLoggedIn(false);
       window.location.reload();
     } else {
-      setRegisterMe(true);
+      setIsRegister(true);
     }
-  };
-
-  const toggleRegister = () => {
-    setRegisterMe((prevState) => !prevState);
-  };
-
-  const toggleBuyedGamesErrorModule = () => {
-    setBuyedGames((prevState) => !prevState);
   };
 
   const onAddProductClick = () => {
@@ -54,7 +51,7 @@ const Header: React.FC<{ getState: (state: boolean) => void }> = (props) => {
     if (token) {
       toggleAddProduct();
     } else {
-      setRegisterMe(true);
+      setIsRegister(true);
     }
   };
 
@@ -63,7 +60,7 @@ const Header: React.FC<{ getState: (state: boolean) => void }> = (props) => {
     if (nickName) {
       router.push(`${nickName}`);
     } else {
-      setRegisterMe(true);
+      setIsRegister(true);
     }
   };
 
@@ -143,17 +140,6 @@ const Header: React.FC<{ getState: (state: boolean) => void }> = (props) => {
           </Button>{" "}
         </div>
       </div>
-      {registerMe && !isLoggedIn && (
-        <Register toggleRegister={toggleRegister} />
-      )}
-      {showAddProduct && <AddProduct toggle={toggleAddProduct} />}
-
-      {buyedGames && (
-        <ErrorModule
-          toggle={toggleBuyedGamesErrorModule}
-          message="You have successfully purchased all the games"
-        />
-      )}
     </nav>
   );
 };

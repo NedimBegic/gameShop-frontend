@@ -36,3 +36,8 @@ export interface CartObject {
   items: any[];
   itemCount: number;
 }
+
+export interface BuyedGames {
+  isBuyed: boolean;
+  message: string;
+}

@@ -5,10 +5,18 @@ import { CartContext } from "@/context/Components";
 
 interface Props {
   message: string;
-  toggle: () => void;
 }
 
-const ErrorModule: React.FC<Props> = ({ message, toggle }) => {
+const ErrorModule: React.FC<Props> = ({ message }) => {
+  const { buyedGames, setBuyedGames } = useContext(CartContext);
+
+  const toggle = () => {
+    setBuyedGames((prevBuyedGames) => ({
+      ...prevBuyedGames,
+      isBuyed: !prevBuyedGames.isBuyed,
+    }));
+  };
+
   return (
     <div>
       <BackgroundBlur toggleFunc={toggle} />

@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "./Register.module.css";
 import { useRouter } from "next/router";
 import BackgroundBlur from "./BackgroundBlur";
+import { CartContext } from "@/context/Components";
 
 enum FormType {
   Register,
   SignIn,
 }
 
-interface RegisterProps {
-  toggleRegister: () => void;
-}
-
-const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
+const Register: React.FC = () => {
   const [formType, setFormType] = useState<FormType>(FormType.Register);
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
@@ -21,8 +18,13 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
   const [file, setFile] = useState<File | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
+  const { isRegister, setIsRegister } = useContext(CartContext);
+
   const router = useRouter();
 
+  const toggleRegister = () => {
+    setIsRegister((prevState) => !prevState);
+  };
   const handleRegister = async () => {
     if (password !== confirmPassword) {
       setIsPasswordMatch(false);
@@ -70,6 +72,7 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
     formData.append("password", password);
 
     try {
+      setErrorMessage("Loging in...");
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_MY_BACKEND}/auth/login`,
         {
@@ -84,6 +87,7 @@ const Register: React.FC<RegisterProps> = ({ toggleRegister }) => {
         localStorage.setItem("nickname", data.data.nickName);
         toggleRegister();
         router.push("/");
+        window.location.reload();
       } else {
         setErrorMessage(data.message);
       }

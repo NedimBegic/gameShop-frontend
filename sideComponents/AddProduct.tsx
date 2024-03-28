@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import style from "./AddProduct.module.css";
 import BackgroundBlur from "./BackgroundBlur";
 import { useRouter } from "next/router";
+import { CartContext } from "@/context/Components";
 
-const AddProduct: React.FC<{ toggle: () => void }> = (props) => {
+const AddProduct: React.FC = () => {
   const [formData, setFormData] = useState({
     productName: "",
     productPrice: "",
@@ -16,7 +17,11 @@ const AddProduct: React.FC<{ toggle: () => void }> = (props) => {
 
   const [message, setMessage] = useState("");
   const router = useRouter();
+  const { showAddProduct, setShowAddProduct } = useContext(CartContext);
 
+  const toggle = () => {
+    setShowAddProduct((prevState) => !prevState);
+  };
   const handleFormChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -72,7 +77,7 @@ const AddProduct: React.FC<{ toggle: () => void }> = (props) => {
         setMessage(data.message);
         router.push("/games");
         window.location.reload();
-        props.toggle();
+        toggle();
       } else {
         const errorMessage = data.message.includes(
           "Bind parameters must not contain function(s). To pass the body of a function as a string call .toString() first"
@@ -89,9 +94,9 @@ const AddProduct: React.FC<{ toggle: () => void }> = (props) => {
 
   return (
     <div>
-      <BackgroundBlur toggleFunc={props.toggle} />
+      <BackgroundBlur toggleFunc={toggle} />
       <div className={style.modal}>
-        <button onClick={props.toggle} className={style.x}>
+        <button onClick={toggle} className={style.x}>
           X
         </button>
         <img src="/gameShopWhite.png" alt="logo" />
