@@ -11,7 +11,6 @@
         <li><a href="https://github.com/NedimBegic/gameShop-backend">Backend code on GitHub</a></li>
     </ul>
     
-<!-- You can insert your image of the page here -->
   <img src="https://i.postimg.cc/7qJBGhN2/gamse-Shop.png" alt="GameShop Frontend" >
     
   <h2>Getting Started</h2>
