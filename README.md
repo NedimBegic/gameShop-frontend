@@ -12,7 +12,7 @@
     </ul>
     
 <!-- You can insert your image of the page here -->
-  <img src="https://i.ibb.co/HTLHMTj/gamse-Shop.png" alt="GameShop Frontend">
+  <img src="https://i.postimg.cc/7qJBGhN2/gamse-Shop.png" alt="GameShop Frontend" >
     
   <h2>Getting Started</h2>
     <p>To run this project locally:</p>
